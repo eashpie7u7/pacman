@@ -35,7 +35,10 @@ tiles = [
     0,1,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 ]
-
+#para modificar el tablero, se usaron 0s y 1s
+#los 0s para las paredes del tablero
+#y 1s para espacios abiertos con tiles donde puede pasar el pacman
+#con una nueva configuración de 0s y 1s se obtuvo un tablero completamente nuevo
 def square(x, y):
     "Draw square using path at (x, y)."
     path.up()
@@ -115,17 +118,27 @@ def move():
         if valid(point + course):
             point.move(course)
         else:
+            #si el fantasma no podía pasar porque encontró una pared
+            #había sólo 4 opciones diferentes para avanzar
+            #los hice mas inteligentes al determinar que dirección debían tomar 
+            #dependiendo de donde se encontraba el pacman
+            #arriba, abajo, a la derecha o izquierda del pacman
             if pacman.y<=point.y:
                 if pacman.x<=point.x:
+                    #hacia abajo e izquierda
                     options = [
                         vector(-20, 0),
+                        #en estos vectores fue donde se aumentó la velocidad de los fantasmas
                         vector(0, -20)
+                        #haciendo quue recorran más pixeles en el tiempo marcado por el timer 
                     ]
                     plan = choice(options)
                     if valid(point + plan):
                         course.x = plan.x
                         course.y = plan.y
                     else:
+                    #en caso de que no se pueda mover ni hacia abajo ni a la izquierda
+                    #que sería lo ideal, puede moverse hacia arriba o hacia la derecha
                         options = [
                             vector(20, 0),
                             vector(0, 20)
@@ -135,6 +148,7 @@ def move():
                     course.y = plan.y
 
                 else:
+                    #hacia abajo y derecha 
                         options=[
                         vector(20, 0),
                         vector(0, -20)
@@ -144,6 +158,8 @@ def move():
                             course.x = plan.x
                             course.y = plan.y
                         else:
+                        #en caso de que no se pueda mover ni hacia arriba ni a la derecha
+                        #que sería lo ideal, puede moverse hacia abajo o hacia la izquierda
                             options=[
                             vector(-20, 0),
                             vector(0, 20)
@@ -153,6 +169,7 @@ def move():
                             course.y = plan.y
             else:
                 if pacman.x<=point.x:
+                #hacia arriba y hacia la izquierda
                     options = [
                         vector(-20, 0),
                         vector(0, 20)
@@ -181,6 +198,7 @@ def move():
                             ]
 
                 else:
+                    #hacia arriba y hacia la derecha
                     options=[
                     vector(20, 0),
                     vector(0, 20)
