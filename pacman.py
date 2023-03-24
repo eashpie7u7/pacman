@@ -115,15 +115,100 @@ def move():
         if valid(point + course):
             point.move(course)
         else:
-            options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
-            ]
-            plan = choice(options)
-            course.x = plan.x
-            course.y = plan.y
+            if pacman.y<=point.y:
+                if pacman.x<=point.x:
+                    options = [
+                        vector(-5, 0),
+                        vector(0, -5)
+                    ]
+                    plan = choice(options)
+                    if valid(point + plan):
+                        course.x = plan.x
+                        course.y = plan.y
+                    else:
+                        options = [
+                            vector(5, 0),
+                            vector(0, 5)
+                        ]
+                    plan = choice(options)
+                    course.x = plan.x
+                    course.y = plan.y
+
+                else:
+                        options=[
+                        vector(5, 0),
+                        vector(0, -5)
+                        ]
+                        plan = choice(options)
+                        if valid(point + plan):
+                            course.x = plan.x
+                            course.y = plan.y
+                        else:
+                            options=[
+                            vector(-5, 0),
+                            vector(0, 5)
+                            ]
+                            plan = choice(options)
+                            course.x = plan.x
+                            course.y = plan.y
+            else:
+                if pacman.x<=point.x:
+                    options = [
+                        vector(-5, 0),
+                        vector(0, 5)
+                    ]
+                    plan = choice(options)
+                    if valid(point + plan):
+                        course.x = plan.x
+                        course.y = plan.y
+                    else:
+                        options = [
+                            vector(5, 0),
+                            vector(0, 5),
+                            vector(0, -5)
+                        ] 
+                        plan = choice(options)
+                        if valid(point + plan):
+                        #se volvió a añadir un valid por si se queda trabado en una esquina del tablero
+                        #sin poder ir hacia arriba  o hacia la derecha, aunque idealmente debería ir hacia alla
+                            course.x = plan.x
+                            course.y = plan.y
+                        else:                        
+                            options=[
+                            vector(5, 0),
+                            vector(0, 5),
+                            vector(0, -5)
+                            ]
+
+                else:
+                    options=[
+                    vector(5, 0),
+                    vector(0, 5)
+                    ]
+                    plan = choice(options)
+                    if valid(point + plan):
+                        course.x = plan.x
+                        course.y = plan.y
+                    else:
+                        print("MAL")
+                        options=[
+                        vector(-5, 0),
+                        vector(0, 5),
+                        ]
+                        if valid(point + plan):
+                        #se añadio este valid por si se quedaba en una esquina 
+                        # donde no podía ir hacia la izquierda ni hacia arriba
+                            course.x = plan.x
+                            course.y = plan.y
+                        else:                        
+                            options=[
+                            vector(-5, 0),
+                            vector(0, -5),
+                            vector(0, 5)
+                            ]
+                        plan = choice(options)
+                        course.x = plan.x
+                        course.y = plan.y
 
         up()
         goto(point.x + 10, point.y + 10)
