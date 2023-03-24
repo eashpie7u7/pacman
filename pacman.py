@@ -118,8 +118,8 @@ def move():
             if pacman.y<=point.y:
                 if pacman.x<=point.x:
                     options = [
-                        vector(-5, 0),
-                        vector(0, -5)
+                        vector(-20, 0),
+                        vector(0, -20)
                     ]
                     plan = choice(options)
                     if valid(point + plan):
@@ -127,8 +127,8 @@ def move():
                         course.y = plan.y
                     else:
                         options = [
-                            vector(5, 0),
-                            vector(0, 5)
+                            vector(20, 0),
+                            vector(0, 20)
                         ]
                     plan = choice(options)
                     course.x = plan.x
@@ -136,8 +136,8 @@ def move():
 
                 else:
                         options=[
-                        vector(5, 0),
-                        vector(0, -5)
+                        vector(20, 0),
+                        vector(0, -20)
                         ]
                         plan = choice(options)
                         if valid(point + plan):
@@ -145,8 +145,8 @@ def move():
                             course.y = plan.y
                         else:
                             options=[
-                            vector(-5, 0),
-                            vector(0, 5)
+                            vector(-20, 0),
+                            vector(0, 20)
                             ]
                             plan = choice(options)
                             course.x = plan.x
@@ -154,8 +154,8 @@ def move():
             else:
                 if pacman.x<=point.x:
                     options = [
-                        vector(-5, 0),
-                        vector(0, 5)
+                        vector(-20, 0),
+                        vector(0, 20)
                     ]
                     plan = choice(options)
                     if valid(point + plan):
@@ -163,9 +163,9 @@ def move():
                         course.y = plan.y
                     else:
                         options = [
-                            vector(5, 0),
-                            vector(0, 5),
-                            vector(0, -5)
+                            vector(20, 0),
+                            vector(0, 20),
+                            vector(0, -20)
                         ] 
                         plan = choice(options)
                         if valid(point + plan):
@@ -175,25 +175,24 @@ def move():
                             course.y = plan.y
                         else:                        
                             options=[
-                            vector(5, 0),
-                            vector(0, 5),
-                            vector(0, -5)
+                            vector(20, 0),
+                            vector(0, 20),
+                            vector(0, -20)
                             ]
 
                 else:
                     options=[
-                    vector(5, 0),
-                    vector(0, 5)
+                    vector(20, 0),
+                    vector(0, 20)
                     ]
                     plan = choice(options)
                     if valid(point + plan):
                         course.x = plan.x
                         course.y = plan.y
                     else:
-                        print("MAL")
                         options=[
-                        vector(-5, 0),
-                        vector(0, 5),
+                        vector(-20, 0),
+                        vector(0, 20),
                         ]
                         if valid(point + plan):
                         #se añadio este valid por si se quedaba en una esquina 
@@ -202,9 +201,9 @@ def move():
                             course.y = plan.y
                         else:                        
                             options=[
-                            vector(-5, 0),
-                            vector(0, -5),
-                            vector(0, 5)
+                            vector(-20, 0),
+                            vector(0, -20),
+                            vector(0, 20)
                             ]
                         plan = choice(options)
                         course.x = plan.x
